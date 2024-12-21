@@ -1,7 +1,7 @@
 resource "aws_subnet" "public_subnets" {
-  count             = length(var.public_subnet_cidr_block_value)
+  count             = length(var.public_subnet_cidr)
   vpc_id            = aws_vpc.vpc_name.id
-  cidr_block        = element(var.public_subnet_cidr_block_value, count.index)
+  cidr_block        = element(var.public_subnet_cidr, count.index)
   availability_zone = element(var.azs, count.index)
 
   tags = {
@@ -13,9 +13,9 @@ resource "aws_subnet" "public_subnets" {
   }
 }
 resource "aws_subnet" "private_subnets" {
-  count             = length(var.private_subnet_cidr_block_value)
+  count             = length(var.private_subnet_cidr)
   vpc_id            = aws_vpc.vpc_name.id
-  cidr_block        = element(var.private_subnet_cidr_block_value, count.index)
+  cidr_block        = element(var.private_subnet_cidr, count.index)
   availability_zone = element(var.azs, count.index)
 
   tags = {
